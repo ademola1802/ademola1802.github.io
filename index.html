@@ -67,59 +67,111 @@
 
   <!-- ✅ Inline Responsive Fixes -->
   <style>
-    /* Make all images responsive */
-    img {
-      max-width: 100%;
-      height: auto;
-    }
+/* ✅ Make all images responsive */
+img {
+  max-width: 100%;
+  height: auto;
+}
 
-    /* ===== Sidebar responsiveness ===== */
-    @media (max-width: 768px) {
-      .sidebar {
-        width: 100% !important;
-        float: none !important;
-        position: relative !important;
-        margin-bottom: 20px;
-      }
-      .sidebar .author__avatar img {
-        max-width: 120px;
-        margin: 0 auto;
-        display: block;
-      }
-      .author__content, .author__urls-wrapper {
-        text-align: center !important;
-      }
-    }
+/* ===== Sidebar responsiveness ===== */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100% !important;
+    float: none !important;
+    position: relative !important;
+    margin-bottom: 20px;
+  }
+  .sidebar .author__avatar img {
+    max-width: 120px;
+    margin: 0 auto;
+    display: block;
+  }
+  .author__content, .author__urls-wrapper {
+    text-align: center !important;
+  }
+}
 
-    /* ===== Navigation responsiveness ===== */
-    @media (max-width: 768px) {
-      .masthead__menu nav ul.visible-links {
-        display: block !important;
-        text-align: center !important;
-        padding: 0;
-      }
-      .masthead__menu nav ul.visible-links li {
-        display: block !important;
-        margin: 8px 0 !important;
-      }
-      .greedy-nav button {
-        display: none !important; /* hide unused toggle */
-      }
-    }
+/* ===== Hamburger menu styling ===== */
+.greedy-nav button {
+  display: none; /* hidden by default */
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+}
+.greedy-nav .navicon {
+  width: 25px;
+  height: 2px;
+  background: #333;
+  display: block;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+}
+.greedy-nav .navicon::before,
+.greedy-nav .navicon::after {
+  content: "";
+  width: 25px;
+  height: 2px;
+  background: #333;
+  position: absolute;
+  left: 0;
+  transition: all 0.3s ease-in-out;
+}
+.greedy-nav .navicon::before {
+  top: -8px;
+}
+.greedy-nav .navicon::after {
+  top: 8px;
+}
+/* Animate into X */
+.greedy-nav button.active .navicon {
+  background: transparent;
+}
+.greedy-nav button.active .navicon::before {
+  transform: rotate(45deg);
+  top: 0;
+}
+.greedy-nav button.active .navicon::after {
+  transform: rotate(-45deg);
+  top: 0;
+}
 
-    /* ===== Page content responsiveness ===== */
-    @media (max-width: 768px) {
-      .page__inner-wrap {
-        padding: 15px !important;
-      }
-      .page__content {
-        font-size: 16px !important;
-        line-height: 1.6 !important;
-      }
-      h1, h2, h3 {
-        font-size: 1.2em !important;
-      }
-    }
+/* ===== Navigation responsiveness ===== */
+@media (max-width: 768px) {
+  .greedy-nav button {
+    display: block; /* show hamburger on mobile */
+  }
+  .greedy-nav .visible-links {
+    display: none; /* hide links initially */
+    flex-direction: column;
+    background: #fff;
+    text-align: center;
+    width: 100%;
+    border-top: 1px solid #ddd;
+  }
+  .greedy-nav .visible-links.show {
+    display: flex !important; /* show when toggled */
+  }
+  .greedy-nav .visible-links li {
+    margin: 10px 0;
+    display: block;
+  }
+}
+
+/* ===== Page content responsiveness ===== */
+@media (max-width: 768px) {
+  .page__inner-wrap {
+    padding: 15px !important;
+  }
+  .page__content {
+    font-size: 16px !important;
+    line-height: 1.6 !important;
+  }
+  h1, h2, h3 {
+    font-size: 1.2em !important;
+  }
+}
+
   </style>
 
 
@@ -359,11 +411,34 @@
 
 
 
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const navButton = document.querySelector(".greedy-nav button");
+    const hiddenLinks = document.querySelector(".greedy-nav .hidden-links");
+
+    if (navButton && hiddenLinks) {
+      // Toggle menu + animate hamburger
+      navButton.addEventListener("click", function() {
+        hiddenLinks.classList.toggle("show");
+        navButton.classList.toggle("active");
+      });
+
+      // Auto-close on link click
+      hiddenLinks.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", function() {
+          hiddenLinks.classList.remove("show");
+          navButton.classList.remove("active");
+        });
+      });
+    }
+  });
+</script>
 
 
 
   </body>
 </html>
+
 
 
 
