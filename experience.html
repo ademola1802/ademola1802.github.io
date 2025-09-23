@@ -81,7 +81,119 @@
 </script>
 
 <!-- For all browsers -->
-<link rel="stylesheet" href="https://academicpages.github.io/assets/css/main.css">
+<!-- <link rel="stylesheet" href="https://academicpages.github.io/assets/css/main.css"> -->
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="https://academicpages.github.io/assets/css/main.css">
+    <link rel="stylesheet" href="https://academicpages.github.io/assets/css/academicons.css"/>
+
+
+  <style>
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ===== Sidebar responsiveness ===== */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100% !important;
+    float: none !important;
+    position: relative !important;
+    margin-bottom: 20px;
+  }
+  .sidebar .author__avatar img {
+    max-width: 120px;
+    margin: 0 auto;
+    display: block;
+  }
+  .author__content, .author__urls-wrapper {
+    text-align: center !important;
+  }
+}
+
+/* ===== Hamburger menu styling ===== */
+.greedy-nav button {
+  display: none; /* hidden by default */
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+}
+.greedy-nav .navicon {
+  width: 25px;
+  height: 2px;
+  background: #333;
+  display: block;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+}
+.greedy-nav .navicon::before,
+.greedy-nav .navicon::after {
+  content: "";
+  width: 25px;
+  height: 2px;
+  background: #333;
+  position: absolute;
+  left: 0;
+  transition: all 0.3s ease-in-out;
+}
+.greedy-nav .navicon::before {
+  top: -8px;
+}
+.greedy-nav .navicon::after {
+  top: 8px;
+}
+/* Animate into X */
+.greedy-nav button.active .navicon {
+  background: transparent;
+}
+.greedy-nav button.active .navicon::before {
+  transform: rotate(45deg);
+  top: 0;
+}
+.greedy-nav button.active .navicon::after {
+  transform: rotate(-45deg);
+  top: 0;
+}
+
+/* ===== Navigation responsiveness ===== */
+@media (max-width: 768px) {
+  .greedy-nav button {
+    display: block; /* show hamburger on mobile */
+  }
+  .greedy-nav .visible-links {
+    display: none; /* hide links initially */
+    flex-direction: column;
+    background: #fff;
+    text-align: center;
+    width: 100%;
+    border-top: 1px solid #ddd;
+  }
+  .greedy-nav .visible-links.show {
+    display: flex !important; /* show when toggled */
+  }
+  .greedy-nav .visible-links li {
+    margin: 10px 0;
+    display: block;
+  }
+}
+
+/* ===== Page content responsiveness ===== */
+@media (max-width: 768px) {
+  .page__inner-wrap {
+    padding: 15px !important;
+  }
+  .page__content {
+    font-size: 16px !important;
+    line-height: 1.6 !important;
+  }
+  h1, h2, h3 {
+    font-size: 1.2em !important;
+  }
+}
+
+  </style>
 
 <meta http-equiv="cleartype" content="on">
     
@@ -138,7 +250,7 @@
       <nav id="site-nav" class="greedy-nav">
         <button><div class="navicon"></div></button>
         <ul class="visible-links">
-          <li class="masthead__menu-item masthead__menu-item--lg"><a href="./index.html">Ademola Adesokan's Homepage</a></li>
+          <li class="masthead__menu-item masthead__menu-item--lg"><a href="./index.html">Homepage</a></li>
           
             
             <li class="masthead__menu-item"><a href="./experience.html">Education & Experience</a></li>  
@@ -262,6 +374,28 @@
 </script>
 
 
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const navButton = document.querySelector(".greedy-nav button");
+    const navLinks = document.querySelector(".greedy-nav .visible-links");
+
+    if (navButton && navLinks) {
+      // Toggle menu + animate hamburger
+      navButton.addEventListener("click", function() {
+        navLinks.classList.toggle("show");
+        navButton.classList.toggle("active");
+      });
+
+      // Auto-close on link click
+      navLinks.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", function() {
+          navLinks.classList.remove("show");
+          navButton.classList.remove("active");
+        });
+      });
+    }
+  });
+</script>    
 
 
 
