@@ -1,0 +1,150 @@
+/* ==========================
+   Main Stylesheet (Responsive Fix)
+   For academicpages template
+   ========================== */
+
+/* Base reset */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background: #fff;
+}
+
+a {
+  color: #0366d6;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* Layout */
+#main {
+  display: flex;
+  flex-direction: row;
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+  gap: 20px;
+}
+
+/* Sidebar */
+.sidebar {
+  flex: 0 0 250px;
+}
+.author__avatar img {
+  max-width: 100%;
+  border-radius: 50%;
+}
+.author__content {
+  margin-top: 10px;
+}
+.author__urls-wrapper {
+  margin-top: 15px;
+}
+.author__urls li {
+  list-style: none;
+  margin: 5px 0;
+}
+
+/* Content */
+.page {
+  flex: 1;
+  min-width: 0; /* prevents overflow */
+}
+.page__title {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+.page__content {
+  padding: 10px 0;
+  word-wrap: break-word;
+}
+.page__content img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Navigation (Greedy Nav fix) */
+.greedy-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #000;
+  padding: 10px 20px;
+}
+.greedy-nav a {
+  color: #fff;
+  margin: 0 10px;
+}
+.greedy-nav a:hover {
+  color: #ccc;
+}
+.greedy-nav button {
+  display: none;
+  background: transparent;
+  border: none;
+}
+
+/* ==========================
+   Responsive Fixes
+   ========================== */
+
+/* Tablets and smaller */
+@media screen and (max-width: 992px) {
+  #main {
+    flex-direction: column;
+    padding: 15px;
+  }
+
+  .sidebar {
+    width: 100%;
+    flex: none;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .author__avatar img {
+    max-width: 120px;
+    margin: auto;
+    display: block;
+  }
+
+  .author__urls-wrapper {
+    text-align: center;
+  }
+
+  .page {
+    width: 100%;
+  }
+}
+
+/* Phones */
+@media screen and (max-width: 600px) {
+  .greedy-nav {
+    flex-wrap: wrap;
+    text-align: center;
+  }
+
+  .greedy-nav .visible-links {
+    width: 100%;
+    display: block;
+    padding-top: 10px;
+  }
+
+  .greedy-nav li {
+    display: block;
+    margin: 8px 0;
+  }
+
+  .page__title {
+    font-size: 1.6em;
+  }
+}
