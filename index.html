@@ -65,53 +65,62 @@
     <link rel="stylesheet" href="https://academicpages.github.io/assets/css/main.css">
     <link rel="stylesheet" href="https://academicpages.github.io/assets/css/academicons.css"/>
 
-    <!-- ✅ Inline Responsive Fixes -->
-    <style>
-      /* Ensure images scale properly */
-      img {
-        max-width: 100%;
-        height: auto;
-      }
+  <!-- ✅ Inline Responsive Fixes -->
+  <style>
+    /* Make all images responsive */
+    img {
+      max-width: 100%;
+      height: auto;
+    }
 
-      /* Sidebar goes full width on small screens */
-      @media (max-width: 768px) {
-        .sidebar {
-          width: 100% !important;
-          float: none;
-          position: relative;
-        }
-        .sidebar .author__avatar img {
-          max-width: 150px;
-          margin: 0 auto;
-          display: block;
-        }
-        .author__content, .author__urls-wrapper {
-          text-align: center;
-        }
+    /* ===== Sidebar responsiveness ===== */
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 100% !important;
+        float: none !important;
+        position: relative !important;
+        margin-bottom: 20px;
       }
+      .sidebar .author__avatar img {
+        max-width: 120px;
+        margin: 0 auto;
+        display: block;
+      }
+      .author__content, .author__urls-wrapper {
+        text-align: center !important;
+      }
+    }
 
-      /* Navigation becomes vertical on small screens */
-      @media (max-width: 768px) {
-        .masthead__menu nav ul.visible-links {
-          display: block;
-          text-align: center;
-        }
-        .masthead__menu nav ul li {
-          display: block;
-          margin: 10px 0;
-        }
+    /* ===== Navigation responsiveness ===== */
+    @media (max-width: 768px) {
+      .masthead__menu nav ul.visible-links {
+        display: block !important;
+        text-align: center !important;
+        padding: 0;
       }
+      .masthead__menu nav ul.visible-links li {
+        display: block !important;
+        margin: 8px 0 !important;
+      }
+      .greedy-nav button {
+        display: none !important; /* hide unused toggle */
+      }
+    }
 
-      /* Make page content adjust */
-      @media (max-width: 768px) {
-        .page__inner-wrap {
-          padding: 15px;
-        }
-        h1, h2, h3 {
-          font-size: 1.3em;
-        }
+    /* ===== Page content responsiveness ===== */
+    @media (max-width: 768px) {
+      .page__inner-wrap {
+        padding: 15px !important;
       }
-    </style>
+      .page__content {
+        font-size: 16px !important;
+        line-height: 1.6 !important;
+      }
+      h1, h2, h3 {
+        font-size: 1.2em !important;
+      }
+    }
+  </style>
 
 
 <meta http-equiv="cleartype" content="on">
@@ -355,6 +364,7 @@
 
   </body>
 </html>
+
 
 
 
